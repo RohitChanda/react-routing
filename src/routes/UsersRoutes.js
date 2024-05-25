@@ -1,10 +1,15 @@
 import React, { lazy } from "react";
-import ErrorPage from "../Component/ErrorPage"
+import ErrorPage from "../views/ErrorPage";
 import { SuspenseLoadable } from "../helper/common";
-import MainLayout from "../Component/MainLayout";
+import MainLayout from "../component/MainLayout";
+import ProtectedRoutes from "../component/ProtectedRoutes";
 
-const UserdetailsComponent = SuspenseLoadable(lazy(() => import("../Component/Userdetails")));
-const UsersListComponent = SuspenseLoadable(lazy(() => import("../Component/UsersList")));
+const UserdetailsComponent = SuspenseLoadable(
+  lazy(() => import("../views/Userdetails"))
+);
+const UsersListComponent = SuspenseLoadable(
+  lazy(() => import("../views/UsersList"))
+);
 
 export const UserRoutes = {
   path: "/",
@@ -12,11 +17,15 @@ export const UserRoutes = {
   children: [
     {
       path: "user/:userId",
-      element: <UserdetailsComponent />,
+      element: (
+        <ProtectedRoutes>
+          <UserdetailsComponent />
+        </ProtectedRoutes>
+      ),
     },
     {
       path: "users-list",
-      element:<UsersListComponent />
+      element: <UsersListComponent />,
     },
   ],
   errorElement: <ErrorPage />,

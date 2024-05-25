@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useState } from "react";
-const PreviewComponent = lazy(() => delayForDemo(import("./Preview")));
+const PreviewComponent = lazy(() => delayForDemo(import("../component/Preview")));
 
 const delayForDemo = (promiseCb) => {
   return new Promise((res, rej) => {

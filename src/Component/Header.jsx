@@ -13,6 +13,8 @@ const Header = () => {
       <Link to={"contact"}>Contact</Link>
       <br />
       <Link to={"users-list"}>User List</Link>
+      <br />
+      <Link to={"user/1234"}>User Details</Link>
     </>
   );
 };

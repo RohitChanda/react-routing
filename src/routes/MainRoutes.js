@@ -1,11 +1,11 @@
 import React, { lazy } from "react";
-import ErrorPage from "../Component/ErrorPage"
+import ErrorPage from "../views/ErrorPage"
 import { SuspenseLoadable } from "../helper/common";
-import MainLayout from "../Component/MainLayout";
+import MainLayout from "../component/MainLayout";
 
-const HomeComponent = SuspenseLoadable(lazy(() => import("../Component/Home")));
-const AboutComponent = SuspenseLoadable(lazy(() => import("../Component/About")));
-const ContactComponent = SuspenseLoadable(lazy(() => import("../Component/Contact")));
+const HomeComponent = SuspenseLoadable(lazy(() => import("../views/Home")));
+const AboutComponent = SuspenseLoadable(lazy(() => import("../views/About")));
+const ContactComponent = SuspenseLoadable(lazy(() => import("../views/Contact")));
 
 export const MainRoutes = {
   path: "/",
