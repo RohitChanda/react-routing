@@ -1,12 +1,30 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
+import { userReducer } from "./userReducer";
 
 const AuthContext = createContext(null);
-
+const intialState = { // it can be array or a object
+  isLoggedIn: false,
+  isAdmin: true
+}
 export default function AuthProvider({ children }) {
-  const [isLoggedIn] = useState(false);
+  const [state, dispatch] = useReducer(userReducer, intialState);
+  const doLogin = () => {
+    dispatch({
+      type: 'login',
+      payload: { login: true}
+    })
+  }
+  const doLogout = () => {
+    dispatch({
+      type: 'logout',
+      payload: { login: false}
+    })
+  }
   return (
     <AuthContext.Provider value={{
-        isLoggedIn 
+        ...state,
+        doLogin,
+        doLogout
     }}>
       {children}
     </AuthContext.Provider>
@@ -14,7 +32,7 @@ export default function AuthProvider({ children }) {
 }
 
 export const useAuth = () => {
-  // fetch the conntext
+  // read the conntext
   const context = useContext(AuthContext);
   if (context === undefined) {
     throw new Error("useAuth must be used in AuthProvider");

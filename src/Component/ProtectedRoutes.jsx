@@ -16,7 +16,7 @@ const ProtectedRoutes = ({ children }) => {
 
          */ 
     }
-  }, [navigate, isLoggedIn]);
+  }, [isLoggedIn, navigate]);
 
   return children;
 };
